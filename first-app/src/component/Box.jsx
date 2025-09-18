@@ -1,11 +1,12 @@
 import React from "react";
 
-const Box = () => {
+const Box = (props) => {
+  console.log("props", props);
   return (
     <div>
       <div className="box">
-        Box1
-        <p>리사</p>
+        Box{props.num}
+        <p>{props.name}</p>
       </div>
     </div>
   );
