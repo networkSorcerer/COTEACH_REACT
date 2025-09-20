@@ -1,35 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { useEffect, useState } from "react";
+import "./App.css";
+import Timer from "./Timer";
 function App() {
-  const [count, setCount] = useState(0)
+  const [count, setCount] = useState(0);
+  const [value, setValue] = useState(1);
+  const [showTimer, setShowTimer] = useState(true);
+  const handleClick = () => {
+    setCount((prev) => prev + 1);
+    setValue((prev) => prev + 1);
+  };
+  useEffect(() => {
+    console.log("앱시작!!!");
+  }, []);
+  useEffect(() => {
+    console.log("count");
+  }, [count]);
+  useEffect(() => {
+    console.log("value");
+  }, [value]);
 
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+        {console.log("렌더링")}
+        <h1>{count}</h1>
+        <h2>value:{value}</h2>
+        <button onClick={handleClick}>증가</button>
+        <button onClick={() => setShowTimer((prev) => !prev)}>
+          타이머 보이기
         </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        {showTimer && <Timer />}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
