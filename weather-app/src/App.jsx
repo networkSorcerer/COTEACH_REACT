@@ -5,6 +5,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import WeatherButton from "./component/WeatherButton";
 function App() {
   const [weather, setWeather] = useState();
+  const cities = ["paris", "new york", "tokyo", "seoul"];
+
   const getCurrentLocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       let lat = position.coords.latitude;
