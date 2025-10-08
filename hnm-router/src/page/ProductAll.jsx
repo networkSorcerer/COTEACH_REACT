@@ -17,11 +17,13 @@ const ProductAll = () => {
   return (
     <div>
       <Container>
-        {productList.map((menu) => (
-          <Col lg={3} key={menu.id}>
-            <ProductCard item={menu} />
-          </Col>
-        ))}
+        <Row>
+          {productList.map((menu) => (
+            <Col lg={3} key={menu.id}>
+              <ProductCard item={menu} />
+            </Col>
+          ))}
+        </Row>
       </Container>
     </div>
   );
