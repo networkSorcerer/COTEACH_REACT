@@ -18,6 +18,13 @@ const Navbar = () => {
   const goToLogin = () => {
     navigate("/login");
   };
+  const search = (e) => {
+    if (e.key === "Enter") {
+      console.log("we click this key");
+      let keyword = event.target.value;
+      navigate(`/?q=${keyword}`);
+    }
+  };
   return (
     <div>
       <div>
@@ -30,6 +37,7 @@ const Navbar = () => {
         <img
           width={100}
           src="https://i.pinimg.com/736x/94/8c/7f/948c7f31df5eb63955907221228842d7.jpg"
+          onClick={() => navigate("/")}
         ></img>
       </div>
       <div className="menu-area">
@@ -41,7 +49,7 @@ const Navbar = () => {
 
         <div>
           <FontAwesomeIcon icon={faSearch} />
-          <input type="text" />
+          <input type="text" onKeyPress={(e) => search(e)} />
         </div>
       </div>
     </div>
