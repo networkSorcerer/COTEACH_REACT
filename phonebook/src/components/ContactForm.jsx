@@ -1,9 +1,17 @@
 import { Box, Button, TextField } from "@mui/material";
 import React, { useState } from "react";
+import usePhoneBookStore from "../stores/usePhonebookStore";
 
 const ContactForm = () => {
   const [name, setName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
+  const { addContact } = usePhoneBookStore();
+  const handleAddContact = () => {
+    if (!name.trim() || !phoneNumber.trim()) return;
+
+    // 연락처를 추가
+    addContact(name, phoneNumber);
+  };
   return (
     <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
       <TextField
@@ -20,7 +28,7 @@ const ContactForm = () => {
         value={phoneNumber}
         onChange={(e) => setPhoneNumber(e.target.value)}
       />
-      <Button variant="contained" size="Large">
+      <Button variant="contained" size="Large" onClick={handleAddContact}>
         추가
       </Button>
     </Box>
