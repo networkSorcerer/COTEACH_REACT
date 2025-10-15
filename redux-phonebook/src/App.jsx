@@ -1,14 +1,25 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { Col, Container, Row } from "react-bootstrap";
 import "./App.css";
+import ContactForm from "./component/ContactForm";
+import "bootstrap/dist/css/bootstrap.min.css";
+import ContactList from "./component/ContactList";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <div></div>
+      <div className="App">
+        <h1 className="title">연락처</h1>
+        <Container>
+          <Row>
+            <Col>
+              <ContactForm />
+            </Col>
+            <Col>
+              <ContactList />
+            </Col>
+          </Row>
+        </Container>
+      </div>
     </>
   );
 }
