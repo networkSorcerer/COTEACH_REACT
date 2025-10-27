@@ -3,11 +3,12 @@ import axios from "axios";
 import React from "react";
 
 const ReactQueryPage = () => {
-  const fetchPost = () => {
-    return axios.get("http://localhost:3004/posts");
+  const fetchPost = (queryData) => {
+    const id = queryData.queryKey[1];
+    return axios.get(`http://localhost:3004/posts/${id}`);
   };
   const { isLoading, data, isError, error, refetch } = useQuery({
-    queryKey: ["posts"],
+    queryKey: ["posts", 1],
     queryFn: fetchPost,
     retry: 1,
     staleTime: 10000,
@@ -27,9 +28,9 @@ const ReactQueryPage = () => {
   }
   return (
     <div>
-      {data?.map((item) => (
+      {/* {data?.map((item) => (
         <div>{item.title}</div>
-      ))}
+      ))} */}
       <button onClick={refetch}>post 리스트 다시 들고오기</button>
     </div>
   );
