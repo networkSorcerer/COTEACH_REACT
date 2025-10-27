@@ -6,7 +6,7 @@ const ReactQueryPage = () => {
   const fetchPost = () => {
     return axios.get("http://localhost:3004/posts");
   };
-  const { isLoading, data, isError, error } = useQuery({
+  const { isLoading, data, isError, error, refetch } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPost,
     retry: 1,
@@ -15,6 +15,7 @@ const ReactQueryPage = () => {
     select: (data) => {
       return data.data;
     },
+    enabled: false,
   });
   console.log("ddd", data);
   console.log("error", error);
@@ -26,9 +27,10 @@ const ReactQueryPage = () => {
   }
   return (
     <div>
-      {data.map((item) => (
+      {data?.map((item) => (
         <div>{item.title}</div>
       ))}
+      <button onClick={refetch}>post 리스트 다시 들고오기</button>
     </div>
   );
 };
