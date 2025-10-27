@@ -10,6 +10,8 @@ const ReactQueryPage = () => {
     queryKey: ["posts"],
     queryFn: fetchPost,
     retry: 1,
+    staleTime: 10000,
+    gcTime: 1000,
     select: (data) => {
       return data.data;
     },
